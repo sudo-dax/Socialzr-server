@@ -1,0 +1,19 @@
+Server Notes:
+
+Setup:
+1. mkdir
+2. npm init
+npm i express nodemon body-parser cors
+
+# express
+# Nodemon only used in development to restart server automatically. Not needed after deployment.
+# body-parser - Middleware that passes to req.body - makes it easier to recieve requests. Parses information into JSON (usually)
+# cors - Middleware that allows us to ahve a connection to client that is in another place that is not localhost.
+    - Used to connect to Heroku or Netlify
+# Mongoose - Node module used to connect server to database
+
+
+Authorisation:
+1. npm i passport passport-local 
+
+

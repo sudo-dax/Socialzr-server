@@ -1,17 +1,37 @@
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const mongoose = require('mongoose')
 
 // Sets port if deploying to external provider 
-// or port assigned already
-const port = process.env.port || 3030;
+// or port assigned already 
+const port = process.env.port || 3000
 
-// Equivalant of create server in http library
-const app = express();
+// Define Express
+const app = express()
 
-// Call the middleware we want to use
-app.use(cors());
-app.use(bodyParser.json());
+// Calls Middleware
+app.use(cors())
+app.use(bodyParser.json())
+
+// Equivalant of create server in http library 
+const dbConn = "mongodb://localhost/socializr_app"
+
+mongoose.connect(
+    dbConn,
+    {
+        useNewUrlParser : true,
+        useUnifiedTopology : true,
+        useFindAndModify : false
+    },
+    err => {
+        if (err) {
+            console.log("Error connecting to database", err)
+        } else {
+            console.log("~Connected to database!~")
+        }
+    }       
+)
 
 // Define a simple route for GET
 app.get("/",(req,res) => {
@@ -19,4 +39,4 @@ app.get("/",(req,res) => {
 });
 
 // Listen
-app.listen(port, () => console.log(`Listening on port ${port}. Arrr.`));
+app.listen(port, ()=> console.log("SocialZr server is running on port " + port))

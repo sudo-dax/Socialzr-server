@@ -1,15 +1,17 @@
-# Express Server Template
+# SocialZr - Express Server
 
-Template express server created by Code Like a Girl / Gentech team.
+The express server created by the SocialZr Gentech team.
 
 ## Middleware
 
 - cors
 - body-parser
+- express
+- mongoose
 
 ## Default port
 
-Default port is 3030, because 3000 is so overdone.
+Default port is 3001.
 
 ## Running Server
 

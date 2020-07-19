@@ -2,10 +2,11 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
+const eventRouter = require("./routes/events_routes")
 
 // Sets port if deploying to external provider 
 // or port assigned already 
-const port = process.env.port || 3000
+const port = process.env.port || 3001
 
 // Define Express
 const app = express()
@@ -32,6 +33,8 @@ mongoose.connect(
         }
     }       
 )
+
+app.use("/events", eventRouter)
 
 // Define a simple route for GET
 app.get("/",(req,res) => {

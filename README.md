@@ -1,9 +1,10 @@
-# SocialZr - Express Server
+
+# Socialzr Express Server 
 
 The express server created by the SocialZr Gentech team.
 
 ## Middleware
-
+- express
 - cors
 - body-parser
 - express
@@ -11,7 +12,8 @@ The express server created by the SocialZr Gentech team.
 
 ## Default port
 
-Default port is 3001.
+Default port is 3001, because 3000 is so overdone.
+
 
 ## Running Server
 

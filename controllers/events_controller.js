@@ -3,6 +3,7 @@ const { restart } = require("nodemon")
 
 const getEvents = function (req, res) {
     getAllEvents().exec((err, events) => {
+
         if (err) {
             res.status(500)
         return res.json({

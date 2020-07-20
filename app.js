@@ -6,7 +6,9 @@ const eventRouter = require("./routes/events_routes")
 
 // Sets port if deploying to external provider 
 // or port assigned already 
+
 const port = process.env.port || 3001
+
 
 // Define Express
 const app = express()
@@ -42,4 +44,5 @@ app.get("/",(req,res) => {
 });
 
 // Listen
-app.listen(port, ()=> console.log("SocialZr server is running on port " + port))
+app.listen(process.env.PORT);
+// app.listen(port, ()=> console.log("SocialZr server is running on port " + port))

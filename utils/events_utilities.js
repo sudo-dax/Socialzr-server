@@ -1,5 +1,6 @@
 const Event = require("../models/event")
 
+
 const getAllEvents = function(req) {
     if (req.query.type) {
         return Event.findByEventCategory(req.query.category)

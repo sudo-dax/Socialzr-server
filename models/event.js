@@ -6,6 +6,10 @@ const Event = new Schema ({
     type: String,
     required: true
     },
+    category: {
+    type: String,
+    required: true,
+    },
     organiser: {
         type: String,
         required: false
@@ -23,3 +27,5 @@ const Event = new Schema ({
         required: true
     }
 })
+
+module.exports = mongoose.model("Event", Event)

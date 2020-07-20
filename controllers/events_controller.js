@@ -1,8 +1,9 @@
 const {getAllEvents, getEventById, addEvent, deleteEvent, updateEvent} = require("../utils/events_utilities")
-// const { restart } = require("nodemon")
+const { restart } = require("nodemon")
 
 const getEvents = function (req, res) {
-    getAllEvents(req).exec((err, events) => {
+    getAllEvents().exec((err, events) => {
+
         if (err) {
             res.status(500)
         return res.json({

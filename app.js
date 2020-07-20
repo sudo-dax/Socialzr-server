@@ -6,7 +6,9 @@ const eventRouter = require("./routes/events_routes")
 
 // Sets port if deploying to external provider 
 // or port assigned already 
-const PORT = process.env.PORT || 3001
+
+const port = process.env.port || 3001
+
 
 // Define Express
 const app = express()

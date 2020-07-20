@@ -2,10 +2,11 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
+const eventRouter = require("./routes/events_routes")
 
 // Sets port if deploying to external provider 
 // or port assigned already 
-const port = process.env.port || 3000
+const PORT = process.env.PORT || 3001
 
 // Define Express
 const app = express()
@@ -33,10 +34,13 @@ mongoose.connect(
     }       
 )
 
+app.use("/events", eventRouter)
+
 // Define a simple route for GET
 app.get("/",(req,res) => {
     res.send("Hi from your Express Server. From past you. You are awesome.")
 });
 
 // Listen
-app.listen(port, ()=> console.log("SocialZr server is running on port " + port))
+app.listen(process.env.PORT);
+// app.listen(port, ()=> console.log("SocialZr server is running on port " + port))

@@ -3,6 +3,10 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const eventRouter = require("./routes/events_routes")
+const session = require("express-session")
+const MongoStore = require("connect-mongo")(session)
+const passport = require("passport")
+const authRouter = require("./routes/auth_routes")
 
 // Sets port if deploying to external provider 
 // or port assigned already 
@@ -25,7 +29,8 @@ mongoose.connect(
     {
         useNewUrlParser : true,
         useUnifiedTopology : true,
-        useFindAndModify : false
+        useFindAndModify : false,
+        userCreateIndex: true
     },
     err => {
         if (err) {
@@ -36,7 +41,29 @@ mongoose.connect(
     }       
 )
 
+app.use(session({
+    secret: "socialzr",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1800000
+    },
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection
+    })
+}))
+
+require("./config/passport")
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.get("/",(req,res)=> {
+    console.log(req.session)
+    res.send(req.session)
+})
+
 app.use("/events", eventRouter)
+app.use("/auth", authRouter)
 
 // Define a simple route for GET
 app.get("/",(req,res) => {
@@ -45,4 +72,4 @@ app.get("/",(req,res) => {
 
 // Listen
 app.listen(process.env.PORT);
-// app.listen(port, ()=> console.log("SocialZr server is running on port " + port))
+app.listen(port, ()=> console.log("SocialZr server is running on port " + port))

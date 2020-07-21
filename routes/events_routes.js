@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const {getEvents, getEvent, postEvent, removeEvent, changeEvent} = require("../controllers/events_controller")
+const {getEvents, getEvent, postEvent, removeEvent, changeEvent, userAuthenticated} = require("../controllers/events_controller")
 
 
 // READ
@@ -12,6 +12,8 @@ router.get("/", getEvents)
 // GET on "/events/:id"
 // Returns an event with given id
 router.get ("/:id", getEvent)
+
+router.use(userAuthenticated)
 
 // CREATE
 // POST in "/events"

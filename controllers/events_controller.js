@@ -63,4 +63,12 @@ const changeEvent = function (req, res) {
     })
 }
 
-module.exports = {getEvents, getEvent, postEvent, removeEvent, changeEvent}
+const userAuthenticated = function(req,res,next){
+    if (req.isAuthenticated()){
+        next()
+    }else{
+        res.sendStatus(403)
+    }
+}
+
+module.exports = {getEvents, getEvent, postEvent, removeEvent, changeEvent, userAuthenticated}

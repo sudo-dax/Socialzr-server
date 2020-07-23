@@ -1,19 +1,28 @@
-const {getAllEvents, getEventById, addEvent, deleteEvent, updateEvent} = require("../utils/events_utilities")
-const { restart } = require("nodemon")
+const {
+    getAllEvents, 
+    getEventById, 
+    addEvent, 
+    deleteEvent, 
+    updateEvent
+} = require("../utils/event_utilities")
+const { userAuthenticated } = require("../utils/common_utilities")
 
+// const { restart } = require("nodemon")
+
+// GET all Events
 const getEvents = function (req, res) {
-    getAllEvents().exec((err, events) => {
-
+    getAllEvents(req)
+    .exec((err, events) => {
         if (err) {
             res.status(500)
-        return res.json({
+            return res.json({
             error: err.message
         })
         }
         res.send(events)
     })
 }
-
+// GET Event by id
 const getEvent = function (req, res) {
     getEventById(req.params.id).exec((err, event) => {
         if (err) {
@@ -61,14 +70,6 @@ const changeEvent = function (req, res) {
         res.status(200)
         res.send(event)
     })
-}
-
-const userAuthenticated = function(req,res,next){
-    if (req.isAuthenticated()){
-        next()
-    }else{
-        res.sendStatus(403)
-    }
 }
 
 module.exports = {getEvents, getEvent, postEvent, removeEvent, changeEvent, userAuthenticated}

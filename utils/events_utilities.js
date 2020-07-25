@@ -2,11 +2,11 @@ const Event = require("../models/event")
 
 
 const getAllEvents = function(req) {
-    if (req.query.type) {
-        return Event.findByEventCategory(req.query.category)
-    } else {
+    // if (req.query.type) {
+    //     return Event.findByEventCategory(req.query.category)
+    // } else {
         return Event.find()
-    }
+    // }
 }
 
 const getEventById = function (id) {

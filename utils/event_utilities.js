@@ -37,4 +37,4 @@ const updateEvent = function (req) {
     })
 }
 
-module.exports = {getAllEvents, getEventById, addEvent, deleteEvent, updateEvent};
+module.exports = {getAllEvents, getEventById, addEvent, deleteEvent, updateEvent}; 

@@ -18,7 +18,6 @@ const port = process.env.port || 3001
 const app = express()
 
 // Calls Middleware
-app.use(cors())
 app.use(bodyParser.json())
 
 // Equivalant of create server in http library 
@@ -40,6 +39,18 @@ mongoose.connect(
         }
     }       
 )
+
+// Use Cors
+const whitelist = ['http://localhost:3000']
+app.use(cors({
+    credentials: true,
+    origin: function (origin, callback) {
+        const whitelistIndex = whitelist.findIndex((url) => url.includes(origin))
+        console.log("found whitelistIndex", whitelistIndex)
+        callback(null, whitelistIndex > -1)
+    }
+}))
+
 
 app.use(session({
     secret: "socialzr",
